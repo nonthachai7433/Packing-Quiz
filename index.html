@@ -282,22 +282,22 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
   <!-- LOGIN VIEW -->
   <div id="view-login">
     <div class="panel">
-      <h2>Login|เข้าสู่ระบบ</h2>
+      <h2>登录|เข้าสู่ระบบ</h2>
       <div class="login-field">
-        <label>ชื่อผู้ใช้ (USERNAME)</label>
-        <input type="text" id="login-username" placeholder="กรอกชื่อผู้ใช้ของคุณ" autocomplete="off">
+        <label>用户名|ชื่อผู้ใช้ (USERNAME)</label>
+        <input type="text" id="login-username" placeholder="请输入用户名|กรอกชื่อผู้ใช้ของคุณ" autocomplete="off">
       </div>
       <div class="login-field">
-        <label>รหัสผ่าน (PASSWORD)</label>
-        <input type="password" id="login-password" placeholder="กรอกรหัสผ่าน" autocomplete="off">
+        <label>密码|รหัสผ่าน (PASSWORD)</label>
+        <input type="password" id="login-password" placeholder="请输入密码|กรอกรหัสผ่าน" autocomplete="off">
       </div>
       <div class="login-error" id="login-error"></div>
       <div class="btn-row">
-        <button class="btn btn-primary" onclick="handleLogin()">Login|เข้าสู่ระบบ</button>
+        <button class="btn btn-primary" onclick="handleLogin()">登录|เข้าสู่ระบบ</button>
       </div>
       <p class="login-note">
         กรอกชื่อผู้ใช้และรหัสผ่านของคุณเพื่อเริ่มทำแบบทดสอบ ชื่อผู้ใช้จะถูกบันทึกไว้ในประวัติการสอบ
-        เพื่อให้ทราบว่าใครเป็นผู้ทำแบบทดสอบแต่ละครั้ง (ข้อมูลนี้บันทึกลง Firebase ฐานข้อมูลกลาง ผู้ใช้อื่นจะมองเห็นประวัติการสอบร่วมกันได้)
+        เพื่อให้ทราบว่าใครเป็นผู้ทำแบบทดสอบแต่ละครั้ง(请输入您的用户名和密码以开始测试。系统将记录您的用户名于考试历史中，以便确认每次测试的应试者)
       </p>
     </div>
   </div>
@@ -800,7 +800,7 @@ async function renderCategoryList(){
         </div>
       </div>
       <div class="btn-row">
-        <button class="btn btn-primary btn-small" onclick="event.stopPropagation();selectCategory('${cat.id}')">เข้าสู่หมวดนี้</button>
+        <button class="btn btn-primary btn-small" onclick="event.stopPropagation();selectCategory('${cat.id}')">进入此分类|เข้าสู่หมวดนี้</button>
       </div>
     </div>`;
   }
