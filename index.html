@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>แบบทดสอบความรู้บรรจุภัณฑ์</title>
+<title>)包装知识题库 | แหล่งรวมแบบทดสอบความรู้บรรจุภัณฑ์</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -305,8 +305,8 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
   <!-- CATEGORY SELECT VIEW -->
   <div id="view-categories" style="display:none;">
     <div class="panel">
-      <h2>เลือกหมวดข้อสอบ</h2>
-      <p style="line-height:1.6;font-size:14.5px;color:var(--ink-soft);margin-top:0;">เลือกหมวดข้อสอบที่ต้องการทำแบบทดสอบ</p>
+      <h2>选择考试类别 | เลือกหมวดข้อสอบ</h2>
+      <p style="line-height:1.6;font-size:14.5px;color:var(--ink-soft);margin-top:0;">请选择要进行测试的考试类别 | เลือกหมวดข้อสอบที่ต้องการทำแบบทดสอบ</p>
       <div id="category-list"></div>
     </div>
   </div>
@@ -321,11 +321,11 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
       <p style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--hazard-dark);margin:-6px 0 10px;" id="home-cat-name"></p>
       <p style="line-height:1.6;font-size:14.5px;color:var(--ink-soft);margin-top:0;" id="home-desc"></p>
       <div class="btn-row">
-        <button class="btn btn-primary" id="start-btn" onclick="startQuiz()">เริ่มทำแบบทดสอบ</button>
+        <button class="btn btn-primary" id="start-btn" onclick="startQuiz()">开始考试 | เริ่มทำแบบทดสอบ</button>
       </div>
     </div>
     <div class="panel">
-      <h2>ประวัติการสอบและสถิติ</h2>
+      <h2>考试记录与统计 | ประวัติการสอบและสถิติ</h2>
       <div id="home-certificate-area"></div>
       <div id="stats-area"></div>
     </div>
@@ -341,8 +341,8 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
     <div id="question-list"></div>
     <div class="qbottom-bar">
       <div style="text-align:center;">
-        <button class="btn btn-dark" id="finish-btn" onclick="finishQuiz()">เสร็จสิ้น — ส่งคำตอบ</button>
-        <div class="unanswered-note" id="unanswered-note" style="display:none;">ยังตอบไม่ครบทุกข้อ กรุณาเลือกคำตอบให้ครบก่อนส่ง</div>
+        <button class="btn btn-dark" id="finish-btn" onclick="finishQuiz()">提交答案 | ส่งคำตอบ</button>
+        <div class="unanswered-note" id="unanswered-note" style="display:none;">请答完再提交 | กรุณาเลือกคำตอบให้ครบก่อนส่ง</div>
       </div>
     </div>
   </div>
@@ -356,8 +356,8 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
       <div id="stamp-area"></div>
       <div id="message-area"></div>
       <div class="btn-row" style="justify-content:center;margin-top:18px;">
-        <button class="btn btn-primary" onclick="startQuiz()">ทำแบบทดสอบใหม่</button>
-        <button class="btn btn-outline" onclick="goHome()">กลับหน้าหลัก</button>
+        <button class="btn btn-primary" onclick="startQuiz()">再测一次 | ทำแบบทดสอบใหม่</button>
+        <button class="btn btn-outline" onclick="goHome()">回到主页 | กลับหน้าหลัก</button>
       </div>
       <div id="certificate-btn-area"></div>
       <div id="answerkey-area"></div>
@@ -863,9 +863,9 @@ async function renderStats(){
   const consecFails = computeConsecutiveFails(history, currentUser, currentCategoryId);
 
   let html = `<div class="stat-grid">
-      <div class="stat-box"><div class="num">${totalAttempts}</div><div class="lbl">ครั้งที่คุณสอบ</div></div>
-      <div class="stat-box"><div class="num">${passedOnAttempt}</div><div class="lbl">ผ่านตอนครั้งที่</div></div>
-      <div class="stat-box"><div class="num">${consecFails}</div><div class="lbl">ไม่ผ่านติดต่อกัน</div></div>
+      <div class="stat-box"><div class="num">${totalAttempts}</div><div class="lbl">您考试的次数|ครั้งที่คุณสอบ</div></div>
+      <div class="stat-box"><div class="num">${passedOnAttempt}</div><div class="lbl">次考试中通过|ผ่านตอนครั้งที่</div></div>
+      <div class="stat-box"><div class="num">${consecFails}</div><div class="lbl">连续未通过|ไม่ผ่านติดต่อกัน</div></div>
     </div>
     <ul class="history-list">`;
   catHistory.slice().reverse().slice(0,15).forEach(h=>{
@@ -875,8 +875,8 @@ async function renderStats(){
 
   if(consecFails >= SETTINGS.unlockThreshold){
     html += `<div class="answerkey-unlock">
-      <strong>โอ้ยย ไม่ผ่านสักทีเฉลยให้ก็ได้จำด้วยล่ะ</strong>
-      <div class="btn-row"><button class="btn btn-outline" onclick="renderAnswerKey('user-answerkey-stats')">ดูเฉลยทั้งหมด</button></div>
+      <strong>好吧，给你看答案。| โอ้ยย ไม่ผ่านสักทีเฉลยให้ก็ได้จำด้วยล่ะ</strong>
+      <div class="btn-row"><button class="btn btn-outline" onclick="renderAnswerKey('user-answerkey-stats')">查看完整答案 | ดูเฉลยทั้งหมด</button></div>
     </div>
     <div id="user-answerkey-stats"></div>`;
   }
@@ -910,11 +910,11 @@ function renderUserAnswerKeyPanel(){
   if(entry && entry.detail){
     const wrongCount = entry.detail.filter(d=>!d.correct).length;
     let html = `<div class="answerkey-unlock">
-      <strong>เฉลยคำตอบ &middot; อ้างอิงจากการทำข้อสอบครั้งล่าสุดของคุณ</strong>
+      <strong>答案解析|เฉลยคำตอบ &middot; 基于您最近一次的考试记录|อ้างอิงจากการทำข้อสอบครั้งล่าสุดของคุณ</strong>
       <div class="qadmin-meta" style="margin:6px 0 10px;">${entry.date} &middot; คะแนน ${entry.score}/${entry.total} &middot; ตอบผิด ${wrongCount} ข้อ</div>
       <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;">
         <input type="checkbox" id="user-detail-filter-wrong" onchange="toggleUserAnswerKeyFilter()" ${userAnswerKeyShowOnlyWrong?'checked':''}>
-        แสดงเฉพาะข้อที่ตอบผิด
+        只看错题 | แสดงเฉพาะข้อที่ตอบผิด
       </label>
     </div>`;
 
