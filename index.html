@@ -367,8 +367,8 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
   <!-- CERTIFICATE VIEW -->
   <div id="view-certificate" style="display:none;">
     <div class="btn-row no-print" style="margin-bottom:14px;">
-      <button class="btn btn-outline btn-small" onclick="closeCertificateView()">← กลับ</button>
-      <button class="btn btn-primary btn-small" onclick="window.print()">ดาวน์โหลดเป็น PDF</button>
+      <button class="btn btn-outline btn-small" onclick="closeCertificateView()">← BACK</button>
+      <button class="btn btn-primary btn-small" onclick="window.print()">DOWNLOAD PDF</button>
     </div>
     <div id="certificate-print-area">
       <div class="cert-wrap">
@@ -1128,7 +1128,7 @@ function renderHomeCertificateBox(){
   }
   area.innerHTML = `<div class="answerkey-unlock" style="border-color:var(--admin);background:rgba(106,74,163,0.06);">
     <strong>คุณเคยสอบผ่านหมวดนี้ด้วยคะแนนเต็ม ${homeCertPass.score}/${homeCertPass.total}</strong> — ออกใบประกาศได้เลยโดยไม่ต้องสอบใหม่
-    <div class="btn-row"><button class="btn btn-primary" onclick="openCertificateForm('home-certificate-area','view-home',${homeCertPass.score},${homeCertPass.total})">&#127942; ออกใบประกาศเกียรติคุณ</button></div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="openCertificateForm('home-certificate-area','view-home',${homeCertPass.score},${homeCertPass.total})">&#127942; 颁发荣誉证书|ออกใบประกาศเกียรติคุณ</button></div>
   </div>`;
 }
 
