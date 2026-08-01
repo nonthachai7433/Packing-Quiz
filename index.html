@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>)包装知识题库 | แหล่งรวมแบบทดสอบความรู้บรรจุภัณฑ์</title>
+<title>包装知识题库 | แหล่งรวมแบบทดสอบความรู้บรรจุภัณฑ์</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -271,18 +271,18 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
   <div class="manifest">
     <div class="corner-tag" id="corner-tag">QC · 40 ITEMS</div>
     <div class="barcode" id="barcode"></div>
-    <h1>แบบทดสอบความรู้บรรจุภัณฑ์</h1>
+    <h1>包装知识题库 | แบบทดสอบความรู้บรรจุภัณฑ์</h1>
     <p class="sub">PACKAGING &amp; SHIPPING LABEL COMPLIANCE TEST</p>
     <div class="session-bar" id="session-bar" style="display:none;">
       <span>ผู้ใช้งาน: <span class="who" id="who-label"></span> <span id="admin-badge-wrap"></span></span>
-      <button class="logout-btn" onclick="logout()">ออกจากระบบ</button>
+      <button class="logout-btn" onclick="logout()">Logout|ออกจากระบบ</button>
     </div>
   </div>
 
   <!-- LOGIN VIEW -->
   <div id="view-login">
     <div class="panel">
-      <h2>เข้าสู่ระบบ</h2>
+      <h2>Login|เข้าสู่ระบบ</h2>
       <div class="login-field">
         <label>ชื่อผู้ใช้ (USERNAME)</label>
         <input type="text" id="login-username" placeholder="กรอกชื่อผู้ใช้ของคุณ" autocomplete="off">
@@ -293,7 +293,7 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
       </div>
       <div class="login-error" id="login-error"></div>
       <div class="btn-row">
-        <button class="btn btn-primary" onclick="handleLogin()">เข้าสู่ระบบ</button>
+        <button class="btn btn-primary" onclick="handleLogin()">Login|เข้าสู่ระบบ</button>
       </div>
       <p class="login-note">
         กรอกชื่อผู้ใช้และรหัสผ่านของคุณเพื่อเริ่มทำแบบทดสอบ ชื่อผู้ใช้จะถูกบันทึกไว้ในประวัติการสอบ
@@ -315,9 +315,9 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
   <div id="view-home" style="display:none;">
     <div class="panel">
       <div class="btn-row" style="margin-bottom:12px;">
-        <button class="btn btn-outline btn-small" onclick="goToCategories()">← เลือกหมวดข้อสอบอื่น</button>
+        <button class="btn btn-outline btn-small" onclick="goToCategories()">← 选择其他分类|เลือกหมวดข้อสอบอื่น</button>
       </div>
-      <h2 id="home-title">เริ่มทำแบบทดสอบ</h2>
+      <h2 id="home-title">开始考试|เริ่มทำแบบทดสอบ</h2>
       <p style="font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--hazard-dark);margin:-6px 0 10px;" id="home-cat-name"></p>
       <p style="line-height:1.6;font-size:14.5px;color:var(--ink-soft);margin-top:0;" id="home-desc"></p>
       <div class="btn-row">
@@ -875,7 +875,7 @@ async function renderStats(){
 
   if(consecFails >= SETTINGS.unlockThreshold){
     html += `<div class="answerkey-unlock">
-      <strong>好吧，给你看答案。| โอ้ยย ไม่ผ่านสักทีเฉลยให้ก็ได้จำด้วยล่ะ</strong>
+      <strong>好吧 给你看答案|โอ้ยย ไม่ผ่านสักทีเฉลยให้ก็ได้จำด้วยล่ะ</strong>
       <div class="btn-row"><button class="btn btn-outline" onclick="renderAnswerKey('user-answerkey-stats')">查看完整答案 | ดูเฉลยทั้งหมด</button></div>
     </div>
     <div id="user-answerkey-stats"></div>`;
@@ -920,7 +920,7 @@ function renderUserAnswerKeyPanel(){
 
     const list = userAnswerKeyShowOnlyWrong ? entry.detail.filter(d=>!d.correct) : entry.detail;
     if(list.length === 0){
-      html += `<p class="empty-note">ตอบถูกทุกข้อ ไม่มีข้อที่ตอบผิด 🎉</p>`;
+      html += `<p class="empty-note">太棒了！全答对了！ตอบถูกทุกข้อ ไม่มีข้อที่ตอบผิด 🎉</p>`;
     }else{
       list.forEach(d=>{
         const userAnsLabel = formatAnsLabel(d.userAns, d.opts);
@@ -1099,8 +1099,8 @@ function renderResult(score, total, passed, history){
   const consecFails = computeConsecutiveFails(history, currentUser, currentCategoryId);
   if(consecFails >= SETTINGS.unlockThreshold){
     keyArea.innerHTML = `<div class="answerkey-unlock">
-      <strong>โอ้ยย ไม่ผ่านสักทีเฉลยให้ก็ได้จำด้วยล่ะ</strong>
-      <div class="btn-row" style="justify-content:center;"><button class="btn btn-outline" onclick="renderAnswerKey('user-answerkey-result')">ดูเฉลยทั้งหมด</button></div>
+      <strong>好吧，给你看答案|โอ้ยย ไม่ผ่านสักทีเฉลยให้ก็ได้จำด้วยล่ะ</strong>
+      <div class="btn-row" style="justify-content:center;"><button class="btn btn-outline" onclick="renderAnswerKey('user-answerkey-result')">查看所有答案|ดูเฉลยทั้งหมด</button></div>
     </div>
     <div id="user-answerkey-result"></div>`;
   }
@@ -1112,7 +1112,7 @@ function showCertificateButton(passed, score, total){
   if(!certArea) return;
   if(passed && total > 0 && score === total){
     certArea.innerHTML = `<div class="btn-row" style="justify-content:center;margin-top:4px;">
-      <button class="btn btn-primary" onclick="openCertificateForm()">&#127942; ออกใบประกาศเกียรติคุณ</button>
+      <button class="btn btn-primary" onclick="openCertificateForm()">&#127942; 颁发荣誉证书|ออกใบประกาศเกียรติคุณ</button>
     </div>`;
   }else{
     certArea.innerHTML = "";
@@ -1142,14 +1142,14 @@ function openCertificateForm(areaId, returnView, score, total){
   const certArea = document.getElementById(certAreaId);
   if(!certArea) return;
   certArea.innerHTML = `<div class="confirm-box" style="border-color:var(--admin);background:rgba(106,74,163,0.06);">
-    <strong>กรอกชื่อ-นามสกุลเพื่อออกใบประกาศ</strong>
+    <strong>请输入姓名以颁发证书|กรอกชื่อ-นามสกุลเพื่อออกใบประกาศ</strong>
     <div class="form-grid" style="margin-top:10px;max-width:340px;margin-left:auto;margin-right:auto;">
-      <div><label>ชื่อ</label><input type="text" id="cert-fname" placeholder="ชื่อจริง"></div>
-      <div><label>นามสกุล</label><input type="text" id="cert-lname" placeholder="นามสกุล"></div>
+      <div><label>NAME|ชื่อ</label><input type="text" id="cert-fname" placeholder="NAME|ชื่อจริง"></div>
+      <div><label>LASTNAME|นามสกุล</label><input type="text" id="cert-lname" placeholder="LASTNAME|นามสกุล"></div>
     </div>
     <div class="btn-row" style="justify-content:center;">
-      <button class="btn btn-primary btn-small" onclick="generateCertificate()">ออกใบประกาศ</button>
-      <button class="btn btn-outline btn-small" onclick="cancelCertificateForm()">ยกเลิก</button>
+      <button class="btn btn-primary btn-small" onclick="generateCertificate()">SUBMIT|ออกใบประกาศ</button>
+      <button class="btn btn-outline btn-small" onclick="cancelCertificateForm()">CANCEL|ยกเลิก</button>
     </div>
   </div>`;
 }
