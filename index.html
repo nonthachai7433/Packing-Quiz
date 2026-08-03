@@ -869,9 +869,15 @@ async function renderStats(){
     </div>
     <ul class="history-list">`;
   catHistory.slice().reverse().slice(0,15).forEach(h=>{
-    html += `<li><span><span class="who">${escapeHtml(h.username)}</span> — ${h.date}</span><span class="${h.passed?'tag-pass':'tag-fail'}">${h.score}/${h.total} ${h.passed?'ผ่าน':'ไม่ผ่าน'}</span></li>`;
+    const canView = h.username === currentUser && h.detail && h.detail.length > 0;
+    html += `<li><span><span class="who">${escapeHtml(h.username)}</span> — ${h.date}</span>
+      <span style="display:flex;align-items:center;gap:8px;">
+        <span class="${h.passed?'tag-pass':'tag-fail'}">${h.score}/${h.total} ${h.passed?'ผ่าน':'ไม่ผ่าน'}</span>
+        ${canView ? `<button class="btn btn-outline" style="padding:4px 10px;font-size:12px;" onclick="viewHistoryDetail('${h.id}')">查看答题记录|ดูประวัติการตอบ</button>` : ''}
+      </span></li>`;
   });
-  html += `</ul><div class="shared-note">ประวัติด้านบนแสดงการสอบของผู้ใช้ทุกคนที่บันทึกผ่านระบบ Firebase</div>`;
+  html += `</ul><div class="shared-note">ประวัติด้านบนแสดงการสอบของผู้ใช้ทุกคนที่บันทึกผ่านระบบ Firebase</div>
+    <div id="history-detail-area"></div>`;
 
   if(consecFails >= SETTINGS.unlockThreshold){
     html += `<div class="answerkey-unlock">
@@ -881,6 +887,61 @@ async function renderStats(){
     <div id="user-answerkey-stats"></div>`;
   }
   area.innerHTML = html;
+  statsHistoryCache = history;
+}
+
+let statsHistoryCache = [];
+let historyDetailEntryId = null;
+let historyDetailShowOnlyWrong = false;
+
+function viewHistoryDetail(entryId){
+  historyDetailEntryId = entryId;
+  historyDetailShowOnlyWrong = false;
+  renderHistoryDetailPanel();
+}
+
+function toggleHistoryDetailFilter(){
+  const el = document.getElementById('history-detail-filter-wrong');
+  historyDetailShowOnlyWrong = el ? el.checked : false;
+  renderHistoryDetailPanel();
+}
+
+function renderHistoryDetailPanel(){
+  const entry = statsHistoryCache.find(h => h.id === historyDetailEntryId);
+  const area = document.getElementById('history-detail-area');
+  if(!area) return;
+  if(!entry || !entry.detail){
+    area.innerHTML = `<p class="empty-note">ไม่พบข้อมูลรายละเอียดของการสอบครั้งนี้</p>`;
+    return;
+  }
+
+  const wrongCount = entry.detail.filter(d=>!d.correct).length;
+  let html = `<div class="answerkey-unlock">
+    <strong>答题记录|ประวัติการตอบคำถาม &middot; ${entry.date}</strong>
+    <div class="qadmin-meta" style="margin:6px 0 10px;">คะแนน ${entry.score}/${entry.total} &middot; ตอบผิด ${wrongCount} ข้อ &middot; ไม่แสดงเฉลยที่ถูกต้อง</div>
+    <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;margin-bottom:10px;">
+      <input type="checkbox" id="history-detail-filter-wrong" onchange="toggleHistoryDetailFilter()" ${historyDetailShowOnlyWrong?'checked':''}>
+      只看错题 | แสดงเฉพาะข้อที่ตอบผิด
+    </label>
+    <div class="btn-row"><button class="btn btn-outline" onclick="document.getElementById('history-detail-area').innerHTML='';">ปิด</button></div>
+  </div>`;
+
+  const list = historyDetailShowOnlyWrong ? entry.detail.filter(d=>!d.correct) : entry.detail;
+  if(list.length === 0){
+    html += `<p class="empty-note">ตอบถูกทุกข้อ ไม่มีข้อที่ตอบผิด 🎉</p>`;
+  }else{
+    list.forEach(d=>{
+      const userAnsLabel = formatAnsLabel(d.userAns, d.opts);
+      html += `<div class="qadmin-card" style="border-left:4px solid ${d.correct ? 'var(--stamp-green)' : 'var(--stamp-red)'};">
+        <div class="qadmin-meta">ข้อ ${d.i+1} &middot; ${d.correct ? '&#10003; ตอบถูก' : '&#10007; ตอบผิด'}</div>
+        <div class="qadmin-text">${escapeHtml(d.q)}</div>
+        <div class="qadmin-meta">คำตอบของคุณ: <strong style="color:${d.correct?'var(--stamp-green)':'var(--stamp-red)'}">${escapeHtml(userAnsLabel || '(ไม่ได้ตอบ)')}</strong></div>
+      </div>`;
+    });
+  }
+
+  area.innerHTML = html;
+  area.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
 let userAnswerKeyEntry = null;
