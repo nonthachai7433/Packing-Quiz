@@ -74,6 +74,184 @@ body{
   font-size:11px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.5px;
 }
 
+/* ---- top nav ---- */
+.topnav{
+  position:sticky;top:0;left:0;right:0;z-index:50;
+  background:var(--ink);
+  border-bottom:2px solid var(--hazard);
+  box-shadow:0 3px 10px rgba(0,0,0,0.18);
+}
+.topnav-inner{
+  max-width:820px;margin:0 auto;
+  display:flex;align-items:center;gap:4px;
+  padding:0 14px;overflow-x:auto;
+  scrollbar-width:none;
+}
+.topnav-inner::-webkit-scrollbar{display:none;}
+.nav-brand{
+  font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:700;
+  color:var(--hazard);font-size:14px;letter-spacing:0.5px;
+  padding:14px 12px 14px 0;flex-shrink:0;white-space:nowrap;
+  border-right:1px dashed rgba(255,255,255,0.2);margin-right:6px;
+}
+.nav-item{
+  background:transparent;border:none;cursor:pointer;flex-shrink:0;white-space:nowrap;
+  font-family:'Noto Sans Thai',sans-serif;font-weight:600;font-size:14px;
+  color:var(--paper);padding:15px 12px;position:relative;
+  transition:color .12s ease;
+}
+.nav-item:hover{color:var(--hazard);}
+.nav-item::after{
+  content:"";position:absolute;left:12px;right:12px;bottom:0;height:3px;
+  background:var(--hazard);transform:scaleX(0);transition:transform .15s ease;
+}
+.nav-item.active{color:var(--hazard);}
+.nav-item.active::after{transform:scaleX(1);}
+.nav-item.locked{color:var(--ink-soft);}
+.nav-item.locked .lock-ic{font-size:11px;margin-left:3px;opacity:0.8;}
+.nav-spacer{flex:1;min-width:6px;}
+.nav-auth-btn{
+  background:var(--hazard);color:var(--ink);border:none;border-radius:4px;
+  font-family:'Noto Sans Thai',sans-serif;font-weight:700;font-size:13px;
+  padding:8px 14px;cursor:pointer;flex-shrink:0;white-space:nowrap;margin:0 0 0 6px;
+}
+.nav-auth-user{
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--paper);
+  display:flex;align-items:center;gap:6px;flex-shrink:0;white-space:nowrap;margin-left:6px;
+}
+.nav-auth-user .who{color:var(--hazard);font-weight:700;}
+.nav-admin-btn{
+  background:var(--admin);color:#fff;border:none;border-radius:4px;
+  font-family:'Noto Sans Thai',sans-serif;font-weight:700;font-size:12px;
+  padding:6px 10px;cursor:pointer;flex-shrink:0;white-space:nowrap;
+}
+.nav-admin-btn:hover{opacity:0.88;}
+.nav-logout-btn{
+  background:transparent;border:1px solid var(--paper);color:var(--paper);
+  font-family:'JetBrains Mono',monospace;font-size:11px;
+  padding:5px 9px;border-radius:4px;cursor:pointer;flex-shrink:0;
+}
+.nav-logout-btn:hover{background:rgba(255,255,255,0.1);}
+
+/* ---- pdf viewer modal ---- */
+.pdf-viewer-modal{
+  position:fixed;inset:0;z-index:200;background:rgba(15,18,24,0.82);
+  display:flex;align-items:center;justify-content:center;padding:16px;
+}
+.pdf-viewer-box{
+  background:var(--paper);border-radius:8px;overflow:hidden;
+  width:100%;max-width:960px;height:90vh;display:flex;flex-direction:column;
+  box-shadow:0 10px 40px rgba(0,0,0,0.4);
+}
+.pdf-viewer-bar{
+  background:var(--ink);color:var(--paper);display:flex;align-items:center;
+  justify-content:space-between;gap:10px;padding:10px 14px;flex-shrink:0;flex-wrap:wrap;
+}
+.pdf-viewer-title{
+  font-family:'Noto Sans Thai',sans-serif;font-weight:700;font-size:14px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.pdf-viewer-actions{display:flex;gap:8px;flex-shrink:0;}
+.pdf-viewer-download{
+  background:var(--hazard);color:var(--ink);text-decoration:none;
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
+  padding:6px 10px;border-radius:4px;
+}
+.pdf-viewer-close{
+  background:transparent;border:1px solid var(--paper);color:var(--paper);
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
+  padding:6px 10px;border-radius:4px;cursor:pointer;
+}
+.pdf-viewer-close:hover{background:rgba(255,255,255,0.12);}
+.pdf-viewer-frame{flex:1;width:100%;border:none;background:#525659;}
+@media (max-width:600px){
+  .pdf-viewer-box{height:94vh;}
+  .pdf-viewer-title{width:100%;}
+}
+
+/* ---- public content pages ---- */
+.hero-quicklinks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px;}
+.quicklink-card{
+  background:var(--paper-dark);border:1px solid var(--line);border-radius:6px;
+  padding:14px;cursor:pointer;transition:border-color .12s ease;
+}
+.quicklink-card:hover{border-color:var(--hazard-dark);}
+.quicklink-card .ql-title{font-weight:700;font-size:14.5px;display:flex;align-items:center;gap:6px;}
+.quicklink-card .ql-desc{font-size:12px;color:var(--ink-soft);margin-top:4px;line-height:1.5;}
+.criteria-list{list-style:none;padding:0;margin:0;}
+.criteria-list li{
+  display:flex;gap:10px;padding:12px 0;border-bottom:1px dashed var(--line);
+  align-items:flex-start;
+}
+.criteria-list li:last-child{border-bottom:none;}
+.criteria-num{
+  font-family:'JetBrains Mono',monospace;background:var(--ink);color:var(--hazard);
+  font-size:12px;font-weight:700;border-radius:4px;padding:3px 8px;flex-shrink:0;
+}
+.criteria-body strong{display:block;font-size:14.5px;margin-bottom:2px;}
+.criteria-body span{font-size:13px;color:var(--ink-soft);line-height:1.6;}
+.kb-item{
+  background:var(--paper-dark);border:1px solid var(--line);border-radius:6px;
+  padding:14px;margin-bottom:10px;
+}
+.kb-item .kb-title{font-weight:700;font-size:14.5px;margin-bottom:4px;}
+.kb-item .kb-desc{font-size:13px;color:var(--ink-soft);line-height:1.6;white-space:pre-line;}
+.kb-item .kb-image{width:100%;max-height:280px;object-fit:cover;border-radius:5px;margin:10px 0;display:block;border:1px solid var(--line);}
+.kb-item .kb-file-link{
+  display:inline-flex;align-items:center;gap:6px;margin-top:10px;
+  background:var(--ink);color:var(--paper);text-decoration:none;
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
+  padding:8px 12px;border-radius:5px;
+}
+.kb-item .kb-file-link:hover{background:var(--ink-soft);}
+.kb-file-link-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+.kb-file-link-view-btn{
+  background:var(--hazard);color:var(--ink);border:none;text-decoration:none;
+  font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;
+  padding:8px 12px;border-radius:5px;cursor:pointer;margin-top:10px;
+}
+.kb-file-link-view-btn:hover{background:var(--hazard-dark);}
+.kb-admin-card{
+  background:var(--paper-dark);border:1px solid var(--line);border-radius:6px;
+  padding:14px;margin-bottom:10px;
+}
+.kb-admin-card .kb-admin-title{font-weight:700;font-size:14.5px;}
+.kb-admin-card .kb-admin-desc{font-size:12.5px;color:var(--ink-soft);margin:4px 0;white-space:pre-line;}
+.kb-admin-card .kb-admin-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-soft);margin-top:6px;display:flex;gap:10px;flex-wrap:wrap;}
+.kb-admin-thumb{width:100%;max-height:160px;object-fit:cover;border-radius:5px;margin-top:8px;display:block;}
+.file-upload-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.file-upload-row input[type="file"]{
+  font-family:'Noto Sans Thai',sans-serif;font-size:13px;color:var(--ink-soft);
+}
+.file-preview-chip{
+  display:inline-flex;align-items:center;gap:8px;background:var(--card);
+  border:1px solid var(--line);border-radius:5px;padding:6px 10px;font-size:12px;
+}
+.file-preview-chip img{width:36px;height:36px;object-fit:cover;border-radius:4px;}
+.file-preview-chip .remove-x{cursor:pointer;color:var(--stamp-red);font-weight:700;}
+.about-block{margin-bottom:16px;}
+.about-block h3{
+  font-family:'Oswald',sans-serif;text-transform:uppercase;font-size:14px;
+  letter-spacing:0.5px;margin:0 0 6px;color:var(--ink);
+}
+.about-block p{font-size:14px;line-height:1.7;color:var(--ink-soft);margin:0;}
+.eval-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;-webkit-overflow-scrolling:touch;}
+table.eval-table{width:100%;min-width:760px;border-collapse:collapse;font-size:12.5px;}
+table.eval-table th{
+  background:var(--ink);color:var(--hazard);text-align:left;font-weight:700;
+  padding:8px 9px;font-size:11.5px;letter-spacing:0.3px;vertical-align:top;
+}
+table.eval-table th .cn, table.eval-table td .cn{display:block;color:inherit;opacity:0.75;font-size:10.5px;margin-top:2px;font-family:'Noto Sans SC','Noto Sans Thai',sans-serif;}
+table.eval-table td{padding:8px 9px;border-bottom:1px solid var(--paper-dark);vertical-align:top;color:var(--ink);}
+table.eval-table td .cn{color:var(--ink-soft);}
+table.eval-table tr:nth-child(even) td{background:var(--paper-dark);}
+table.eval-table td.dim-cell{font-weight:700;background:var(--card);white-space:nowrap;}
+table.eval-table td.weight-cell{font-family:'JetBrains Mono',monospace;font-weight:700;text-align:center;background:var(--card);}
+@media (max-width:480px){
+  .hero-quicklinks{grid-template-columns:1fr;}
+  .nav-brand{display:none;}
+}
+
 /* ---- panels ---- */
 .panel{
   background:var(--card);border:1px solid var(--line);border-radius:6px;
@@ -266,6 +444,33 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
 </style>
 </head>
 <body>
+
+<nav class="topnav">
+  <div class="topnav-inner" id="topnav-inner">
+    <span class="nav-brand">MM·PACKING</span>
+    <button class="nav-item" id="nav-home" onclick="navigateTo('home')">หน้าหลัก</button>
+    <button class="nav-item" id="nav-knowledge" onclick="navigateTo('knowledge')">คลังความรู้</button>
+    <button class="nav-item" id="nav-exambank" onclick="navigateTo('exambank')">คลังข้อสอบ</button>
+    <button class="nav-item" id="nav-criteria" onclick="navigateTo('criteria')">เกณฑ์การประเมิน</button>
+    <button class="nav-item" id="nav-about" onclick="navigateTo('about')">เกี่ยวกับเรา</button>
+    <div class="nav-spacer"></div>
+    <div id="nav-auth-area"></div>
+  </div>
+</nav>
+
+<div class="pdf-viewer-modal" id="pdf-viewer-modal" style="display:none;">
+  <div class="pdf-viewer-box">
+    <div class="pdf-viewer-bar">
+      <span class="pdf-viewer-title" id="pdf-viewer-title">เอกสาร PDF</span>
+      <div class="pdf-viewer-actions">
+        <a class="pdf-viewer-download" id="pdf-viewer-download" href="#" download>&#8681; ดาวน์โหลด</a>
+        <button class="pdf-viewer-close" onclick="closePdfViewer()">&times; ปิด</button>
+      </div>
+    </div>
+    <iframe class="pdf-viewer-frame" id="pdf-viewer-frame" src="about:blank"></iframe>
+  </div>
+</div>
+
 <div class="wrap">
 
   <div class="manifest">
@@ -279,8 +484,155 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
     </div>
   </div>
 
+  <!-- PUBLIC HOME VIEW -->
+  <div id="view-public-home" style="display:none;">
+    <div class="panel">
+      <h2>ยินดีต้อนรับ | 欢迎</h2>
+      <p style="line-height:1.7;font-size:14.5px;color:var(--ink-soft);margin-top:0;">
+        ศูนย์รวมความรู้และแบบทดสอบมาตรฐานงานบรรจุภัณฑ์และฉลากจัดส่งสินค้า (Packaging &amp; Shipping Label Compliance)
+        สำหรับพนักงานฝ่ายผลิตและ MM — ใช้เมนูด้านบนเพื่อไปยังคลังความรู้ คลังข้อสอบ เกณฑ์การประเมิน หรืออ่านเกี่ยวกับเรา
+      </p>
+      <div class="hero-quicklinks">
+        <div class="quicklink-card" onclick="navigateTo('knowledge')">
+          <div class="ql-title">📚 คลังความรู้</div>
+          <div class="ql-desc">บทความและคู่มือมาตรฐานการบรรจุภัณฑ์ (ต้องเข้าสู่ระบบ)</div>
+        </div>
+        <div class="quicklink-card" onclick="navigateTo('exambank')">
+          <div class="ql-title">📝 คลังข้อสอบ</div>
+          <div class="ql-desc">ทำแบบทดสอบตามหมวดที่เลือก พร้อมสถิติและใบประกาศ (ต้องเข้าสู่ระบบ)</div>
+        </div>
+        <div class="quicklink-card" onclick="navigateTo('criteria')">
+          <div class="ql-title">✅ เกณฑ์การประเมิน</div>
+          <div class="ql-desc">ดูเกณฑ์ผ่าน/ไม่ผ่าน และเงื่อนไขการปลดล็อกเฉลย</div>
+        </div>
+        <div class="quicklink-card" onclick="navigateTo('about')">
+          <div class="ql-title">ℹ️ เกี่ยวกับเรา</div>
+          <div class="ql-desc">ข้อมูลเกี่ยวกับระบบและทีมงาน</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KNOWLEDGE BANK VIEW (requires login) -->
+  <div id="view-knowledge" style="display:none;">
+    <div class="panel">
+      <h2>คลังความรู้ | 知识库</h2>
+      <p style="line-height:1.6;font-size:14px;color:var(--ink-soft);margin-top:0;">
+        รวมบทความและคู่มือที่เกี่ยวข้องกับงานบรรจุภัณฑ์และฉลากจัดส่ง
+      </p>
+      <div id="kb-public-list"><p class="empty-note">กำลังโหลด...</p></div>
+    </div>
+  </div>
+
+  <!-- EVALUATION CRITERIA VIEW (public) -->
+  <div id="view-criteria" style="display:none;">
+    <div class="panel">
+      <h2>เกณฑ์การประเมิน | 评估标准</h2>
+      <p style="line-height:1.6;font-size:14px;color:var(--ink-soft);margin-top:0;">
+        เกณฑ์การผ่านแบบทดสอบและเงื่อนไขต่าง ๆ ของระบบ
+      </p>
+      <ul class="criteria-list" id="criteria-list"></ul>
+    </div>
+
+    <div class="panel">
+      <h2>ตารางประเมินพนักงานใหม่ | 新员工考核表</h2>
+      <p style="line-height:1.6;font-size:13.5px;color:var(--ink-soft);margin-top:0;">
+        แบบประเมินความสามารถของพนักงานใหม่ตามมิติงาน แบ่งเป็น 4 ด้าน น้ำหนักคะแนนรวม 100 คะแนน<br>
+        新员工能力考核表，按工作维度分为4个方面，总权重100分
+      </p>
+      <div class="eval-table-wrap">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>มิติการประเมิน<br><span class="cn">考核维度</span></th>
+              <th>น้ำหนัก<br><span class="cn">权重</span></th>
+              <th>รายการประเมินโดยละเอียด (ภาคปฏิบัติ)<br><span class="cn">具体考核事项（实操项）</span></th>
+              <th>คะแนนแต่ละข้อ<br><span class="cn">单项打分</span></th>
+              <th>คะแนนที่ได้<br><span class="cn">单项得分</span></th>
+              <th>พี่เลี้ยงยืนยัน<br><span class="cn">带教人确认</span></th>
+              <th>หมายเหตุ<br><span class="cn">备注</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="3" class="dim-cell">การใช้งานระบบ MES<br><span class="cn">MES系统操作</span></td>
+              <td rowspan="3" class="weight-cell">20</td>
+              <td>1. ปฏิบัติงานระบบ MES ของสถานีจัดส่งและสถานีบรรจุภัณฑ์ได้อย่างชำนาญ<br><span class="cn">1.熟练操作出货站&amp;包装站MES</span></td>
+              <td>5</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td>2. ใช้งานฟังก์ชันค้นหาต่าง ๆ ของระบบ MES ได้ชำนาญ เช่น ตรวจสอบย้อนกลับแผ่นชิ้นงาน, ค้นหาข้อมูลผลทดสอบ, ข้อมูลการจัดส่ง, ข้อมูล BOM, ค้นหาข้อมูลบรรจุภัณฑ์ ฯลฯ<br><span class="cn">2.熟练使用MES系统的各项查询功能，如单片追溯；测试数据查询；出货信息；BOM信息；包装信息查询等</span></td>
+              <td>10</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td>3. เข้าใจตรรกะพื้นฐานของสถานีจัดส่งและสถานีบรรจุภัณฑ์<br><span class="cn">3.了解出货站&amp;包装站基础逻辑</span></td>
+              <td>5</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td rowspan="3" class="dim-cell">ความรู้เกี่ยวกับหน้าที่งาน<br><span class="cn">岗位相关知识</span></td>
+              <td rowspan="3" class="weight-cell">20</td>
+              <td>1. ขั้นตอนการทำงานฝั่งจัดส่งสินค้า<br><span class="cn">1.出货端作业流程</span></td>
+              <td>5</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td>2. เข้าใจเอกสารบรรจุภัณฑ์และกฎวิธีการบรรจุของลูกค้าแต่ละราย<br><span class="cn">2.掌握各客户包装文件及包装方式规则</span></td>
+              <td>10</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td>3. รู้จักฉลาก วัสดุบรรจุภัณฑ์ ประเภทถาด (TRAY) และวิธีใช้งานเป็นอย่างดี<br><span class="cn">3.熟知标签、包材、TRAY类型及如何使用</span></td>
+              <td>5</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td rowspan="4" class="dim-cell">ทักษะปฏิบัติงานประจำตำแหน่ง<br><span class="cn">岗位技能操作</span></td>
+              <td rowspan="4" class="weight-cell">50</td>
+              <td>1. การปรับเทียบเครื่องพิมพ์เบื้องต้นและการซ่อมแซมข้อขัดข้อง<br><span class="cn">1.打印机基础校准及故障维修</span></td>
+              <td>15</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td>2. เข้าใจหลักการติดตั้ง/ประกอบเครื่องจักรในแต่ละสถานีงาน<br><span class="cn">2.掌握各工位机台架设原理</span></td>
+              <td>10</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td>3. การวินิจฉัยความผิดปกติเบื้องต้น เช่น ฉลาก ลักษณะภายนอกกล่อง ประเภทวิธีการบรรจุ<br><span class="cn">3.基础异常判定，如：标签、箱子外观、包装方式类型</span></td>
+              <td>15</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td>4. การฝึกอบรมที่เกี่ยวข้องกับพนักงานฝ่ายผลิต (MFG)<br><span class="cn">4.MFG作业人员相关培训</span></td>
+              <td>10</td><td></td><td></td><td></td>
+            </tr>
+            <tr>
+              <td class="dim-cell">ทักษะสำนักงาน<br><span class="cn">办公技能</span></td>
+              <td class="weight-cell">10</td>
+              <td>Excel, PowerPoint เบื้องต้น<br><span class="cn">Excel，PowerPoint基础操作</span></td>
+              <td>10</td><td></td><td></td><td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT US VIEW (public) -->
+  <div id="view-about" style="display:none;">
+    <div class="panel">
+      <h2>เกี่ยวกับเรา | 关于我们</h2>
+      <div class="about-block">
+        <h3>ระบบทดสอบความรู้บรรจุภัณฑ์</h3>
+        <p>เว็บไซต์นี้จัดทำขึ้นเพื่อใช้เป็นเครื่องมือฝึกอบรมและทดสอบความรู้ภายในองค์กร สำหรับพนักงานฝ่ายผลิตและฝ่าย MM ในหัวข้อมาตรฐานการบรรจุภัณฑ์และฉลากจัดส่งสินค้า (Packaging &amp; Shipping Label Compliance)</p>
+      </div>
+      <div class="about-block">
+        <h3>วัตถุประสงค์</h3>
+        <p>เพื่อให้พนักงานสามารถทบทวนความรู้ ทำแบบทดสอบ ติดตามสถิติการทำข้อสอบของตนเอง และรับใบประกาศเกียรติคุณเมื่อผ่านเกณฑ์ที่กำหนด</p>
+      </div>
+      <div class="about-block">
+        <h3>ติดต่อผู้ดูแลระบบ</h3>
+        <p>หากพบปัญหาการใช้งานหรือต้องการเพิ่มเติมข้อสอบ/หมวดหมู่ กรุณาติดต่อผู้ดูแลระบบของหน่วยงานท่าน</p>
+      </div>
+    </div>
+  </div>
+
   <!-- LOGIN VIEW -->
-  <div id="view-login">
+  <div id="view-login" style="display:none;">
     <div class="panel">
       <h2>登录|เข้าสู่ระบบ</h2>
       <div class="login-field">
@@ -405,6 +757,7 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
       <button class="tab-btn active" id="tab-stats" onclick="switchAdminTab('stats')">สถิติ &amp; ประวัติ</button>
       <button class="tab-btn" id="tab-questions" onclick="switchAdminTab('questions')">จัดการข้อสอบ</button>
       <button class="tab-btn" id="tab-categories" onclick="switchAdminTab('categories')">หมวดข้อสอบ</button>
+      <button class="tab-btn" id="tab-knowledge" onclick="switchAdminTab('knowledge')">คลังความรู้</button>
     </div>
 
     <div id="admin-tab-stats">
@@ -449,6 +802,18 @@ footer.note{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:26
         </div>
         <div id="category-form-area"></div>
         <div id="admin-category-list" style="margin-top:16px;"></div>
+      </div>
+    </div>
+
+    <div id="admin-tab-knowledge" style="display:none;">
+      <div class="panel">
+        <h2 class="purple">จัดการคลังความรู้ (<span id="kb-count-label">0</span> เรื่อง)</h2>
+        <p style="line-height:1.6;font-size:13.5px;color:var(--ink-soft);margin-top:0;">เพิ่ม/แก้ไข/ลบบทความในคลังความรู้ — สามารถแนบรูปภาพและไฟล์แนบได้ (แนะนำไฟล์ไม่เกิน 3MB ต่อไฟล์)</p>
+        <div class="btn-row">
+          <button class="btn btn-purple" onclick="openKnowledgeForm(null)">+ เพิ่มบทความใหม่</button>
+        </div>
+        <div id="knowledge-form-area"></div>
+        <div id="admin-knowledge-list" style="margin-top:16px;"></div>
       </div>
     </div>
 
@@ -590,6 +955,11 @@ let editingQuestionId = null;
 let editingCategoryId = null;   
 let qfOptionLetters = [];       
 let qfOptionValues = {};        
+let KNOWLEDGE = [];
+let editingKnowledgeId = null;
+let kfImageData = null, kfImageName = null, kfImageType = null;
+let kfFileData = null, kfFileName = null, kfFileType = null;
+const KB_MAX_BYTES = 3 * 1024 * 1024; // 3MB per attachment guideline
 
 function getOptions(q){
   if(q.t === "tf") return {A:"ถูก (正确)", B:"ผิด (错误)"};
@@ -703,6 +1073,24 @@ async function saveAccounts(accounts){
   catch(e){ console.error('save accounts failed', e); }
 }
 
+async function loadKnowledgeBank(){
+  await waitForStorage();
+  try{
+    const res = await window.storage.get('quiz_knowledge');
+    if(res && res.value){
+      const items = JSON.parse(res.value);
+      if(Array.isArray(items)) return items;
+    }
+  }catch(e){ }
+  return [];
+}
+async function saveKnowledgeBank(items){
+  await waitForStorage();
+  KNOWLEDGE = items;
+  try{ await window.storage.set('quiz_knowledge', JSON.stringify(items)); }
+  catch(e){ console.error('save knowledge failed', e); alert('บันทึกไม่สำเร็จ อาจเป็นเพราะไฟล์แนบมีขนาดใหญ่เกินไป'); }
+}
+
 function computeConsecutiveFails(history, username, categoryId){
   const own = history.filter(h => h.username === username && (h.categoryId || DEFAULT_CATEGORY_ID) === categoryId);
   let n = 0;
@@ -750,18 +1138,27 @@ async function handleLogin(){
 
   currentUser = username;
   isAdmin = false;
-  await goToCategories();
+  updateNavAuth();
+  if(pendingSection){
+    const target = pendingSection;
+    pendingSection = null;
+    navigateTo(target);
+  }else{
+    await goToCategories();
+  }
 }
 
 function logout(){
   currentUser = null;
   isAdmin = false;
   currentCategoryId = null;
+  pendingSection = null;
   document.getElementById('login-username').value = '';
   document.getElementById('login-password').value = '';
   document.getElementById('login-error').style.display = 'none';
   document.getElementById('session-bar').style.display = 'none';
-  showView('view-login');
+  updateNavAuth();
+  navigateTo('home');
 }
 
 function updateSessionBar(){
@@ -771,13 +1168,381 @@ function updateSessionBar(){
   bar.style.display = 'flex';
   who.textContent = currentUser;
   badgeWrap.innerHTML = isAdmin ? '<span class="admin-badge">ADMIN</span>' : '';
+  updateNavAuth();
 }
 
 // VIEW SWITCHING
 function showView(id){
-  ['view-login','view-categories','view-home','view-quiz','view-result','view-certificate','view-admin'].forEach(v=>{
+  ['view-public-home','view-knowledge','view-criteria','view-about','view-login','view-categories','view-home','view-quiz','view-result','view-certificate','view-admin'].forEach(v=>{
     document.getElementById(v).style.display = (v===id) ? 'block' : 'none';
   });
+}
+
+// ============================================================
+// TOP NAV
+// ============================================================
+const NAV_LOGIN_REQUIRED = ['knowledge','exambank'];
+let pendingSection = null;
+
+function updateNavAuth(){
+  const area = document.getElementById('nav-auth-area');
+  if(currentUser){
+    area.innerHTML = `<span class="nav-auth-user"><span class="who">${escapeHtml(currentUser)}</span>${isAdmin?' <span class="admin-badge">ADMIN</span>':''}</span>
+      ${isAdmin ? `<button class="nav-admin-btn" id="nav-admin-btn" onclick="goToAdminPanel()">⚙ แผงควบคุม</button>` : ''}
+      <button class="nav-logout-btn" onclick="logout()">ออกจากระบบ</button>`;
+  }else{
+    area.innerHTML = `<button class="nav-auth-btn" onclick="openLoginDirect()">เข้าสู่ระบบ</button>`;
+  }
+  ['nav-knowledge','nav-exambank'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.classList.toggle('locked', !currentUser);
+    const label = id === 'nav-knowledge' ? 'คลังความรู้' : 'คลังข้อสอบ';
+    el.innerHTML = currentUser ? label : `${label}<span class="lock-ic">🔒</span>`;
+  });
+}
+
+async function goToAdminPanel(){
+  if(!isAdmin) return;
+  await enterAdmin();
+}
+
+function updateNavActive(section){
+  ['home','knowledge','exambank','criteria','about'].forEach(s=>{
+    const el = document.getElementById('nav-'+s);
+    if(el) el.classList.toggle('active', s===section);
+  });
+}
+
+function openLoginDirect(){
+  pendingSection = null;
+  showView('view-login');
+  updateNavActive(null);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function renderCriteriaList(){
+  const list = document.getElementById('criteria-list');
+  if(!list) return;
+  const passPct = SETTINGS.passingPercent != null ? SETTINGS.passingPercent : DEFAULT_PASSING_PERCENT;
+  const unlockN = SETTINGS.unlockThreshold != null ? SETTINGS.unlockThreshold : DEFAULT_UNLOCK_THRESHOLD;
+  list.innerHTML = `
+    <li>
+      <span class="criteria-num">01</span>
+      <div class="criteria-body"><strong>เกณฑ์ผ่าน (Passing Score)</strong>
+        <span>ต้องตอบถูกอย่างน้อย ${passPct}% ของจำนวนข้อสอบทั้งหมดในแต่ละหมวด จึงจะถือว่า "ผ่าน" การทดสอบ</span></div>
+    </li>
+    <li>
+      <span class="criteria-num">02</span>
+      <div class="criteria-body"><strong>การดูเฉลย (Answer Key Unlock)</strong>
+        <span>หากทำแบบทดสอบไม่ผ่านติดต่อกัน ${unlockN} ครั้งขึ้นไปในหมวดเดียวกัน ระบบจะปลดล็อกให้ดูเฉลยทั้งหมดของหมวดนั้น</span></div>
+    </li>
+    <li>
+      <span class="criteria-num">03</span>
+      <div class="criteria-body"><strong>การนับผลสอบ</strong>
+        <span>ระบบจะบันทึกทุกครั้งที่ทำแบบทดสอบ พร้อมวันที่และคะแนน เพื่อใช้ประกอบสถิติของผู้ใช้แต่ละคน</span></div>
+    </li>
+    <li>
+      <span class="criteria-num">04</span>
+      <div class="criteria-body"><strong>ใบประกาศเกียรติคุณ</strong>
+        <span>ผู้ที่ทำคะแนนเต็ม (100%) ในหมวดใดหมวดหนึ่ง จะสามารถออกใบประกาศเกียรติคุณของหมวดนั้นได้จากหน้าประวัติการสอบ</span></div>
+    </li>`;
+}
+
+// ============================================================
+// KNOWLEDGE BANK (public view + admin CRUD)
+// ============================================================
+function formatFileSize(bytes){
+  if(bytes == null) return '';
+  if(bytes < 1024) return bytes + ' B';
+  if(bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+  return (bytes/(1024*1024)).toFixed(2) + ' MB';
+}
+function base64Size(dataUrl){
+  if(!dataUrl) return 0;
+  const b64 = dataUrl.split(',')[1] || '';
+  return Math.floor(b64.length * 0.75);
+}
+function isPdfFile(item){
+  if(!item || !item.fileData) return false;
+  if(item.fileType === 'application/pdf') return true;
+  return !!(item.fileName && item.fileName.toLowerCase().endsWith('.pdf'));
+}
+function renderFileAttachmentHtml(item, cls){
+  if(!item.fileData) return '';
+  const label = escapeHtml(item.fileName || 'ไฟล์แนบ');
+  const size = formatFileSize(item.fileSize);
+  const viewBtn = isPdfFile(item)
+    ? `<button class="${cls}-view-btn" onclick="openPdfViewer('${item.id}', '${escapeHtml((item.title||'').replace(/'/g,"\\'"))}')">&#128065; ดู</button>`
+    : '';
+  return `<div class="${cls}-row">
+    <a class="${cls}" href="${item.fileData}" download="${label}">&#128206; ${label} (${size})</a>
+    ${viewBtn}
+  </div>`;
+}
+function openPdfViewer(itemId, title){
+  const item = KNOWLEDGE.find(k=>k.id===itemId);
+  if(!item || !item.fileData) return;
+  document.getElementById('pdf-viewer-title').textContent = title || item.fileName || 'เอกสาร PDF';
+  document.getElementById('pdf-viewer-frame').src = item.fileData;
+  document.getElementById('pdf-viewer-download').href = item.fileData;
+  document.getElementById('pdf-viewer-download').setAttribute('download', item.fileName || 'file.pdf');
+  document.getElementById('pdf-viewer-modal').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closePdfViewer(){
+  document.getElementById('pdf-viewer-modal').style.display = 'none';
+  document.getElementById('pdf-viewer-frame').src = 'about:blank';
+  document.body.style.overflow = '';
+}
+
+async function renderKnowledgePublic(){
+  const area = document.getElementById('kb-public-list');
+  KNOWLEDGE = await loadKnowledgeBank();
+  if(KNOWLEDGE.length === 0){
+    area.innerHTML = `<p class="empty-note">ยังไม่มีบทความในคลังความรู้ กรุณาแจ้งผู้ดูแลระบบให้เพิ่มเนื้อหา</p>`;
+    return;
+  }
+  let html = '';
+  KNOWLEDGE.forEach(item=>{
+    html += `<div class="kb-item">
+      <div class="kb-title">${escapeHtml(item.title)}</div>
+      ${item.imageData ? `<img class="kb-image" src="${item.imageData}" alt="${escapeHtml(item.title)}">` : ''}
+      ${item.desc ? `<div class="kb-desc">${escapeHtml(item.desc)}</div>` : ''}
+      ${item.fileData ? renderFileAttachmentHtml(item, 'kb-file-link') : ''}
+    </div>`;
+  });
+  area.innerHTML = html;
+}
+
+// ---- ADMIN: knowledge CRUD ----
+async function renderAdminKnowledge(){
+  KNOWLEDGE = await loadKnowledgeBank();
+  document.getElementById('kb-count-label').textContent = KNOWLEDGE.length;
+  const area = document.getElementById('admin-knowledge-list');
+  if(KNOWLEDGE.length === 0){
+    area.innerHTML = `<p class="empty-note">ยังไม่มีบทความ กด "+ เพิ่มบทความใหม่" เพื่อเริ่มต้น</p>`;
+    return;
+  }
+  let html = '';
+  KNOWLEDGE.forEach(item=>{
+    html += renderKnowledgeCardView(item);
+  });
+  area.innerHTML = html;
+}
+
+function renderKnowledgeCardView(item){
+  return `<div class="kb-admin-card" id="kb-admin-card-${item.id}">
+    <div class="kb-admin-title">${escapeHtml(item.title)}</div>
+    ${item.desc ? `<div class="kb-admin-desc">${escapeHtml(item.desc)}</div>` : ''}
+    ${item.imageData ? `<img class="kb-admin-thumb" src="${item.imageData}">` : ''}
+    <div class="kb-admin-meta">
+      ${item.imageData ? `<span>🖼 ${escapeHtml(item.imageName||'')} (${formatFileSize(item.imageSize)})</span>` : ''}
+      ${item.fileData ? `<span>📎 ${escapeHtml(item.fileName||'')} (${formatFileSize(item.fileSize)})</span>` : ''}
+    </div>
+    ${item.fileData && isPdfFile(item) ? `<div class="btn-row" style="margin-top:6px;"><button class="btn btn-outline btn-small" onclick="openPdfViewer('${item.id}', '${escapeHtml((item.title||'').replace(/'/g,"\\'"))}')">&#128065; ดูไฟล์ PDF</button></div>` : ''}
+    <div class="btn-row" style="margin-top:10px;">
+      <button class="btn btn-outline btn-small" onclick="openKnowledgeForm('${item.id}')">แก้ไข</button>
+      <button class="btn btn-danger btn-small" onclick="confirmDeleteKnowledge('${item.id}')">ลบ</button>
+    </div>
+  </div>`;
+}
+
+function readFileAsDataUrl(file){
+  return new Promise((resolve, reject)=>{
+    const reader = new FileReader();
+    reader.onload = ()=>resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function handleKbImageSelect(input){
+  const file = input.files && input.files[0];
+  if(!file) return;
+  if(file.size > KB_MAX_BYTES){
+    alert(`ไฟล์รูปภาพมีขนาดใหญ่เกินไป (${formatFileSize(file.size)}) กรุณาเลือกไฟล์ไม่เกิน ${formatFileSize(KB_MAX_BYTES)}`);
+    input.value = '';
+    return;
+  }
+  try{
+    kfImageData = await readFileAsDataUrl(file);
+    kfImageName = file.name;
+    kfImageType = file.type;
+    renderKbImagePreview();
+  }catch(e){ alert('ไม่สามารถอ่านไฟล์รูปภาพได้'); }
+}
+function removeKbImage(){
+  kfImageData = null; kfImageName = null; kfImageType = null;
+  const input = document.getElementById('kf-image-input');
+  if(input) input.value = '';
+  renderKbImagePreview();
+}
+function renderKbImagePreview(){
+  const wrap = document.getElementById('kf-image-preview');
+  if(!wrap) return;
+  wrap.innerHTML = kfImageData
+    ? `<div class="file-preview-chip"><img src="${kfImageData}">${escapeHtml(kfImageName)}<span class="remove-x" onclick="removeKbImage()">&times;</span></div>`
+    : '';
+}
+
+async function handleKbFileSelect(input){
+  const file = input.files && input.files[0];
+  if(!file) return;
+  if(file.size > KB_MAX_BYTES){
+    alert(`ไฟล์แนบมีขนาดใหญ่เกินไป (${formatFileSize(file.size)}) กรุณาเลือกไฟล์ไม่เกิน ${formatFileSize(KB_MAX_BYTES)}`);
+    input.value = '';
+    return;
+  }
+  try{
+    kfFileData = await readFileAsDataUrl(file);
+    kfFileName = file.name;
+    kfFileType = file.type;
+    renderKbFilePreview();
+  }catch(e){ alert('ไม่สามารถอ่านไฟล์แนบได้'); }
+}
+function removeKbFile(){
+  kfFileData = null; kfFileName = null; kfFileType = null;
+  const input = document.getElementById('kf-file-input');
+  if(input) input.value = '';
+  renderKbFilePreview();
+}
+function renderKbFilePreview(){
+  const wrap = document.getElementById('kf-file-preview');
+  if(!wrap) return;
+  wrap.innerHTML = kfFileData
+    ? `<div class="file-preview-chip">📎 ${escapeHtml(kfFileName)}<span class="remove-x" onclick="removeKbFile()">&times;</span></div>`
+    : '';
+}
+
+function openKnowledgeForm(id){
+  editingKnowledgeId = id;
+  const existing = id ? KNOWLEDGE.find(k=>k.id===id) : null;
+  kfImageData = existing ? (existing.imageData || null) : null;
+  kfImageName = existing ? (existing.imageName || null) : null;
+  kfImageType = existing ? (existing.imageType || null) : null;
+  kfFileData = existing ? (existing.fileData || null) : null;
+  kfFileName = existing ? (existing.fileName || null) : null;
+  kfFileType = existing ? (existing.fileType || null) : null;
+
+  const area = document.getElementById('knowledge-form-area');
+  area.innerHTML = `<div class="panel" style="background:var(--paper-dark);margin-top:12px;">
+    <h2 class="purple">${existing ? 'แก้ไขบทความ' : 'เพิ่มบทความใหม่'}</h2>
+    <div class="form-grid">
+      <div>
+        <label>หัวข้อเรื่อง</label>
+        <input type="text" id="kf-title" value="${existing ? escapeHtml(existing.title) : ''}" placeholder="เช่น มาตรฐานการติดฉลากกล่องบรรจุภัณฑ์">
+      </div>
+      <div>
+        <label>เนื้อหา / รายละเอียด</label>
+        <textarea id="kf-desc" placeholder="รายละเอียดของบทความ...">${existing ? escapeHtml(existing.desc || '') : ''}</textarea>
+      </div>
+      <div>
+        <label>รูปภาพประกอบ (ถ้ามี)</label>
+        <div class="file-upload-row">
+          <input type="file" id="kf-image-input" accept="image/*" onchange="handleKbImageSelect(this)">
+        </div>
+        <div id="kf-image-preview" style="margin-top:8px;"></div>
+      </div>
+      <div>
+        <label>ไฟล์แนบ (ถ้ามี เช่น PDF, DOCX)</label>
+        <div class="file-upload-row">
+          <input type="file" id="kf-file-input" onchange="handleKbFileSelect(this)">
+        </div>
+        <div id="kf-file-preview" style="margin-top:8px;"></div>
+      </div>
+    </div>
+    <div class="btn-row" style="margin-top:12px;">
+      <button class="btn btn-purple" onclick="saveKnowledgeForm()">บันทึก</button>
+      <button class="btn btn-outline" onclick="closeKnowledgeForm()">ยกเลิก</button>
+    </div>
+  </div>`;
+  renderKbImagePreview();
+  renderKbFilePreview();
+  area.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function closeKnowledgeForm(){
+  editingKnowledgeId = null;
+  kfImageData = null; kfImageName = null; kfImageType = null;
+  kfFileData = null; kfFileName = null; kfFileType = null;
+  document.getElementById('knowledge-form-area').innerHTML = '';
+}
+
+async function saveKnowledgeForm(){
+  const title = document.getElementById('kf-title').value.trim();
+  const desc = document.getElementById('kf-desc').value.trim();
+  if(!title){
+    alert('กรุณากรอกหัวข้อเรื่อง');
+    return;
+  }
+  const items = await loadKnowledgeBank();
+  const payload = {
+    title, desc,
+    imageData: kfImageData, imageName: kfImageName, imageType: kfImageType,
+    imageSize: kfImageData ? base64Size(kfImageData) : null,
+    fileData: kfFileData, fileName: kfFileName, fileType: kfFileType,
+    fileSize: kfFileData ? base64Size(kfFileData) : null,
+  };
+  let savedId;
+  if(editingKnowledgeId){
+    savedId = editingKnowledgeId;
+    const idx = items.findIndex(x=>x.id===editingKnowledgeId);
+    if(idx !== -1) items[idx] = { id: editingKnowledgeId, ...payload };
+  }else{
+    savedId = 'kb' + Date.now();
+    items.push({ id: savedId, ...payload });
+  }
+  await saveKnowledgeBank(items);
+  closeKnowledgeForm();
+  renderAdminKnowledge();
+  const card = document.getElementById('kb-admin-card-'+savedId);
+  if(card) card.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function confirmDeleteKnowledge(id){
+  const card = document.getElementById('kb-admin-card-'+id);
+  if(!card) return;
+  card.innerHTML = `<div class="confirm-box">
+    <strong>ยืนยันการลบบทความนี้?</strong> ไม่สามารถกู้คืนได้หลังจากลบ
+    <div class="btn-row">
+      <button class="btn btn-danger btn-small" onclick="deleteKnowledge('${id}')">ยืนยัน ลบบทความนี้</button>
+      <button class="btn btn-outline btn-small" onclick="renderAdminKnowledge()">ยกเลิก</button>
+    </div>
+  </div>`;
+}
+
+async function deleteKnowledge(id){
+  const items = await loadKnowledgeBank();
+  const filtered = items.filter(x=>x.id!==id);
+  await saveKnowledgeBank(filtered);
+  renderAdminKnowledge();
+}
+
+async function navigateTo(section){
+  if(NAV_LOGIN_REQUIRED.includes(section) && !currentUser){
+    pendingSection = section;
+    showView('view-login');
+    updateNavActive(null);
+    window.scrollTo({top:0, behavior:'smooth'});
+    return;
+  }
+  if(section === 'home'){
+    showView('view-public-home');
+  }else if(section === 'knowledge'){
+    showView('view-knowledge');
+    await renderKnowledgePublic();
+  }else if(section === 'criteria'){
+    SETTINGS = await loadSettings();
+    renderCriteriaList();
+    showView('view-criteria');
+  }else if(section === 'about'){
+    showView('view-about');
+  }else if(section === 'exambank'){
+    await goToCategories();
+  }
+  updateNavActive(section);
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 // CATEGORY SELECTION
@@ -810,6 +1575,7 @@ async function renderCategoryList(){
 async function goToCategories(){
   await renderCategoryList();
   showView('view-categories');
+  updateNavActive('exambank');
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
@@ -838,6 +1604,7 @@ async function goHome(){
   document.getElementById('start-btn').disabled = total === 0;
   await renderStats();
   showView('view-home');
+  updateNavActive('exambank');
 }
 
 // HOME STATS
@@ -1017,6 +1784,7 @@ async function startQuiz(){
   renderQuestions();
   updateProgress();
   showView('view-quiz');
+  updateNavActive('exambank');
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
@@ -1127,6 +1895,7 @@ async function finishQuiz(){
 
   renderResult(score, total, passed, history);
   showView('view-result');
+  updateNavActive('exambank');
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
@@ -1285,6 +2054,7 @@ async function enterAdmin(){
   updateSessionBar();
   switchAdminTab('stats');
   showView('view-admin');
+  updateNavActive(null);
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
@@ -1292,12 +2062,15 @@ function switchAdminTab(tab){
   document.getElementById('tab-stats').classList.toggle('active', tab==='stats');
   document.getElementById('tab-questions').classList.toggle('active', tab==='questions');
   document.getElementById('tab-categories').classList.toggle('active', tab==='categories');
+  document.getElementById('tab-knowledge').classList.toggle('active', tab==='knowledge');
   document.getElementById('admin-tab-stats').style.display = tab==='stats' ? 'block' : 'none';
   document.getElementById('admin-tab-questions').style.display = tab==='questions' ? 'block' : 'none';
   document.getElementById('admin-tab-categories').style.display = tab==='categories' ? 'block' : 'none';
+  document.getElementById('admin-tab-knowledge').style.display = tab==='knowledge' ? 'block' : 'none';
   if(tab==='stats') renderAdminStats();
   else if(tab==='questions') renderAdminQuestionsTab();
-  else renderAdminCategories();
+  else if(tab==='categories') renderAdminCategories();
+  else if(tab==='knowledge') renderAdminKnowledge();
 }
 
 async function renderAdminStats(){
@@ -1941,7 +2714,8 @@ async function deleteQuestion(qId){
 }
 
 // Initial View
-showView('view-login');
+updateNavAuth();
+navigateTo('home');
 </script>
 </body>
 </html>
